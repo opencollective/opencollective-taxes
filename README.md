@@ -4,6 +4,9 @@
 [![Slack Status](https://slack.opencollective.org/badge.svg)](https://slack.opencollective.org)
 [![Dependency Status](https://david-dm.org/opencollective/opencollective-taxes/status.svg)](https://david-dm.org/opencollective/opencollective-taxes)
 [![Greenkeeper badge](https://badges.greenkeeper.io/opencollective/opencollective-taxes.svg)](https://greenkeeper.io/)
+[![codecov](https://codecov.io/gh/opencollective/opencollective-taxes/branch/master/graph/badge.svg)](https://codecov.io/gh/opencollective/opencollective-taxes)
+
+
 
 ## Foreword
 
