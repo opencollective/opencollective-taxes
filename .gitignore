@@ -1,0 +1,19 @@
+.next
+.env
+node_modules
+npm-debug.log.*
+*.log
+yarn.lock
+.DS_Store
+build
+cypress/screenshots
+cypress/videos
+dist
+*.swp
+styleguide/index.html
+styleguide/build/
+.vimrc
+
+# VSCode & VSCode's extensions
+.vscode/*
+.history
