@@ -6,13 +6,10 @@ npm-debug.log.*
 yarn.lock
 .DS_Store
 build
-cypress/screenshots
-cypress/videos
 dist
 *.swp
-styleguide/index.html
-styleguide/build/
 .vimrc
+coverage
 
 # VSCode & VSCode's extensions
 .vscode/*
