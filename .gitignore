@@ -10,6 +10,7 @@ dist
 *.swp
 .vimrc
 coverage
+junit.xml
 
 # VSCode & VSCode's extensions
 .vscode/*

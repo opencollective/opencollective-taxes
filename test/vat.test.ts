@@ -17,7 +17,6 @@ it('taxes only certain tier types', () => {
 
   expect(isTierTypeSubjectToVAT('DONATION')).toBe(false);
   expect(isTierTypeSubjectToVAT('MEMBERSHIP')).toBe(false);
-  expect(isTierTypeSubjectToVAT(null)).toBe(false);
 });
 
 describe('vatMayApply', () => {
