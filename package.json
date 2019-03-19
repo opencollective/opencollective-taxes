@@ -1,8 +1,9 @@
 {
-  "name": "opencollective-taxes",
+  "name": "@opencollective/taxes",
   "version": "1.0.0",
   "description": "Helpers to calculate taxes on Open Collective",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",

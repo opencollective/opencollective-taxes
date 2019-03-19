@@ -1,0 +1,6 @@
+.circleci
+.history
+coverage
+node_modules
+test
+junit.xml
