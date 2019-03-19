@@ -1,5 +1,5 @@
 /** A list of all countries codes that are part of the European Union */
-const europeanCountries = [
+const europeanCountries: string[] = [
   'AT',
   'BE',
   'BG',
@@ -33,7 +33,7 @@ const europeanCountries = [
 /**
  * Return true if the country is a member of the European Union.
  */
-export const isMemberOfTheEuropeanUnion = countryCode => {
+export const isMemberOfTheEuropeanUnion = (countryCode: string) : boolean => {
   return europeanCountries.includes(countryCode);
 };
 
