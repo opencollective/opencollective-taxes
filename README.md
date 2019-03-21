@@ -6,8 +6,6 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/opencollective/opencollective-taxes.svg)](https://greenkeeper.io/)
 [![codecov](https://codecov.io/gh/opencollective/opencollective-taxes/branch/master/graph/badge.svg)](https://codecov.io/gh/opencollective/opencollective-taxes)
 
-
-
 ## Foreword
 
 If you see a step below that could be improved (or is outdated), please update the instructions. We rarely go through this process ourselves, so your fresh pair of eyes and your recent experience with it, makes you the best candidate to improve them for other users. Thank you!
@@ -29,6 +27,11 @@ git clone git@github.com:opencollective/opencollective-taxes.git opencollective/
 cd opencollective/taxes
 npm install
 ```
+
+## Release
+
+1. Bump version with `npm version {patch|minor|major}
+2. Run `npm run publish`
 
 ## Contributing
 
