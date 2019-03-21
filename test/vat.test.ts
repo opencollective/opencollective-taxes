@@ -21,11 +21,17 @@ it('taxes only certain tier types', () => {
 });
 
 describe('getVatOriginCountry', () => {
-  expect(getVatOriginCountry('PRODUCT', 'FR', 'BE')).toBe('FR');
-  expect(getVatOriginCountry('SUPPORT', 'FR', 'BE')).toBe('FR');
-  expect(getVatOriginCountry('SERVICE', 'FR', 'BE')).toBe('FR');
-  expect(getVatOriginCountry('TICKET', 'FR', 'BE')).toBe('BE');
-  expect(getVatOriginCountry('DONATION', 'FR', 'BE')).toBe(null);
+  test('returns the country where VAT applies based on tier type', () => {
+    expect(getVatOriginCountry('PRODUCT', 'FR', 'BE')).toBe('FR');
+    expect(getVatOriginCountry('SUPPORT', 'FR', 'BE')).toBe('FR');
+    expect(getVatOriginCountry('SERVICE', 'FR', 'BE')).toBe('FR');
+    expect(getVatOriginCountry('TICKET', 'FR', 'BE')).toBe('BE');
+  });
+
+  test("returns null when VAT doesn't apply", () => {
+    expect(getVatOriginCountry('DONATION', 'FR', 'BE')).toBe(null);
+    expect(getVatOriginCountry('PRODUCT', 'US', 'US')).toBe(null);
+  });
 });
 
 describe('vatMayApply', () => {

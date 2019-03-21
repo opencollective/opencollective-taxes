@@ -26,7 +26,9 @@ export const getVatOriginCountry = (
     return null;
   }
 
-  return tierType === ETierType.TICKET && collectiveCountry ? collectiveCountry : hostCountry;
+  const isEvent = tierType === ETierType.TICKET;
+  const originCountry = isEvent && collectiveCountry ? collectiveCountry : hostCountry;
+  return isMemberOfTheEuropeanUnion(originCountry) ? originCountry : null;
 };
 
 /**
