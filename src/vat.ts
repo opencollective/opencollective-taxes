@@ -11,6 +11,22 @@ export const isTierTypeSubjectToVAT = (tierType: TierType) => {
 };
 
 /**
+ * For a given tier type, this function returns the country that should be used
+ * for calculating the percentage.
+ */
+export const getVatOriginCountry = (
+  tierType: TierType,
+  hostCountry: string | null,
+  collectiveCountry: string | null,
+): string | null => {
+  if (!isTierTypeSubjectToVAT(tierType)) {
+    return null;
+  }
+
+  return tierType === ETierType.TICKET && collectiveCountry ? collectiveCountry : hostCountry;
+};
+
+/**
  * Returns true if VAT may apply.
  *
  * @param {string} tierType - the tier type (eg. SUPPORT, TICKET...)

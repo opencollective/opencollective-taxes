@@ -4,6 +4,7 @@ import {
   getStandardVatRate,
   getVatPercentage,
   checkVATNumberFormat,
+  getVatOriginCountry,
 } from '../src/vat';
 
 const FRENCH_VAT = 20;
@@ -17,6 +18,14 @@ it('taxes only certain tier types', () => {
 
   expect(isTierTypeSubjectToVAT('DONATION')).toBe(false);
   expect(isTierTypeSubjectToVAT('MEMBERSHIP')).toBe(false);
+});
+
+describe('getVatOriginCountry', () => {
+  expect(getVatOriginCountry('PRODUCT', 'FR', 'BE')).toBe('FR');
+  expect(getVatOriginCountry('SUPPORT', 'FR', 'BE')).toBe('FR');
+  expect(getVatOriginCountry('SERVICE', 'FR', 'BE')).toBe('FR');
+  expect(getVatOriginCountry('TICKET', 'FR', 'BE')).toBe('BE');
+  expect(getVatOriginCountry('DONATION', 'FR', 'BE')).toBe(null);
 });
 
 describe('vatMayApply', () => {
