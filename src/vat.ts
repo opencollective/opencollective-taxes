@@ -32,11 +32,11 @@ export const getVatOriginCountry = (
 /**
  * Returns true if VAT may apply.
  *
- * @param {string} tierType - the tier type (eg. SUPPORT, TICKET...)
- * @param {string} hostCountry - two letters country code of the host
+ * @param tierType - the tier type (eg. SUPPORT, TICKET...)
+ * @param originCOuntry - two letters country where VAT is applied
  */
 export const vatMayApply = (tierType: TierType, originCountry: string | null): boolean => {
-  return isTierTypeSubjectToVAT(tierType) && Boolean(originCountry) && isMemberOfTheEuropeanUnion(originCountry);
+  return Boolean(originCountry) && isTierTypeSubjectToVAT(tierType) && isMemberOfTheEuropeanUnion(originCountry);
 };
 
 /**
@@ -53,11 +53,10 @@ export const getStandardVatRate = (tierType: TierType, originCountry: string | n
 /**
  * Calculates the vat rate.
  *
- * @param {string} tierType - the tier type (eg. SUPPORT, TICKET...)
- * @param {string} hostCountry - two letters country code of the host
- * @param {string} collectiveCountry - two letters country code of the collective
- * @param {string} userCountry - two letters country code of the payer
- * @param {string} hasValidVatNumber - (optional) payer VAT identification number
+ * @param tierType - the tier type (eg. SUPPORT, TICKET...)
+ * @param originCountry - two letters country where VAT is applied
+ * @param userCountry - two letters country code of the payer
+ * @param hasValidVatNumber - (optional) payer VAT identification number
  *
  * @returns {Number} `0` if no VAT applies or the percentage as a number between 0 and 100
  */
