@@ -4,6 +4,7 @@ import {
   getStandardVatRate,
   getVatPercentage,
   checkVATNumberFormat,
+  getVatOriginCountry,
 } from '../src/vat';
 
 const FRENCH_VAT = 20;
@@ -19,58 +20,73 @@ it('taxes only certain tier types', () => {
   expect(isTierTypeSubjectToVAT('MEMBERSHIP')).toBe(false);
 });
 
+describe('getVatOriginCountry', () => {
+  expect(getVatOriginCountry('PRODUCT', 'FR', 'BE')).toBe('FR');
+  expect(getVatOriginCountry('SUPPORT', 'FR', 'BE')).toBe('FR');
+  expect(getVatOriginCountry('SERVICE', 'FR', 'BE')).toBe('FR');
+  expect(getVatOriginCountry('TICKET', 'FR', 'BE')).toBe('BE');
+  expect(getVatOriginCountry('DONATION', 'FR', 'BE')).toBe(null);
+});
+
 describe('vatMayApply', () => {
-  it('returns false for non european host', () => {
-    expect(vatMayApply('PRODUCT', 'US', 'US')).toBe(false);
-    expect(vatMayApply('PRODUCT', 'US', 'FR')).toBe(false);
+  it('returns false for non european countries', () => {
+    expect(vatMayApply('PRODUCT', 'US')).toBe(false);
+    expect(vatMayApply('PRODUCT', 'US')).toBe(false);
+  });
+
+  it('returns true for european countries', () => {
+    expect(vatMayApply('PRODUCT', 'FR')).toBe(true);
+    expect(vatMayApply('PRODUCT', 'BE')).toBe(true);
+  });
+
+  it('returns false when tier type is not a taxed type', () => {
+    expect(vatMayApply('DONATION', 'FR')).toBe(false);
   });
 });
 
 describe('getStandardVatRate', () => {
-  it('uses the host country for product and services', () => {
-    expect(getStandardVatRate('SERVICE', 'BE', 'FR')).toBe(BELGIUM_VAT);
-    expect(getStandardVatRate('SUPPORT', 'BE', 'FR')).toBe(BELGIUM_VAT);
-    expect(getStandardVatRate('PRODUCT', 'BE', 'FR')).toBe(BELGIUM_VAT);
-  });
-
-  it("if tier is an event, VAT depend on the event's country", () => {
-    expect(getStandardVatRate('TICKET', 'BE', 'FR')).toBe(FRENCH_VAT);
-    expect(getStandardVatRate('TICKET', 'FR', 'BE')).toBe(BELGIUM_VAT);
+  it('returns the valud based on the country', () => {
+    expect(getStandardVatRate('SERVICE', 'BE')).toBe(BELGIUM_VAT);
+    expect(getStandardVatRate('SERVICE', 'FR')).toBe(FRENCH_VAT);
+    expect(getStandardVatRate('SUPPORT', 'BE')).toBe(BELGIUM_VAT);
+    expect(getStandardVatRate('PRODUCT', 'BE')).toBe(BELGIUM_VAT);
+    expect(getStandardVatRate('TICKET', 'BE')).toBe(BELGIUM_VAT);
+    expect(getStandardVatRate('DONATION', 'BE')).toBe(0);
   });
 });
 
 describe('getVatPercentage', () => {
   describe('has VAT if', () => {
     it('individual is in the same country', () => {
-      expect(getVatPercentage('PRODUCT', 'FR', 'FR', 'FR', false)).toBe(FRENCH_VAT);
+      expect(getVatPercentage('PRODUCT', 'FR', 'FR', false)).toBe(FRENCH_VAT);
     });
 
     it('it is an individual in a different european country', () => {
-      expect(getVatPercentage('PRODUCT', 'FR', 'FR', 'BE', false)).toBe(FRENCH_VAT);
+      expect(getVatPercentage('PRODUCT', 'FR', 'BE', false)).toBe(FRENCH_VAT);
     });
 
     it('it is a company in the same country', () => {
-      expect(getVatPercentage('PRODUCT', 'FR', 'FR', 'FR', true)).toBe(FRENCH_VAT);
+      expect(getVatPercentage('PRODUCT', 'FR', 'FR', true)).toBe(FRENCH_VAT);
     });
   });
 
   describe('has NO VAT if', () => {
     it('it is a company in a different european country', () => {
-      expect(getVatPercentage('PRODUCT', 'BE', 'BE', 'FR', true)).toBe(0);
+      expect(getVatPercentage('PRODUCT', 'BE', 'FR', true)).toBe(0);
     });
 
     it('it is an individual in a different country outside EU', () => {
-      expect(getVatPercentage('PRODUCT', 'BE', 'BE', 'US', false)).toBe(0);
+      expect(getVatPercentage('PRODUCT', 'BE', 'US', false)).toBe(0);
     });
 
     it('it is a company in a different country outside EU', () => {
-      expect(getVatPercentage('PRODUCT', 'BE', 'BE', 'US', true)).toBe(0);
+      expect(getVatPercentage('PRODUCT', 'BE', 'US', true)).toBe(0);
     });
   });
 
   it('for events, the place where the event takes place determines the vat', () => {
-    expect(getVatPercentage('TICKET', 'FR', 'BE', 'FR', false)).toBe(BELGIUM_VAT);
-    expect(getVatPercentage('TICKET', 'FR', 'FR', 'FR', false)).toBe(FRENCH_VAT);
+    expect(getVatPercentage('TICKET', 'BE', 'FR', false)).toBe(BELGIUM_VAT);
+    expect(getVatPercentage('TICKET', 'FR', 'FR', false)).toBe(FRENCH_VAT);
   });
 });
 
