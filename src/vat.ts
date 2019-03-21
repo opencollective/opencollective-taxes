@@ -5,6 +5,9 @@ import TierType, { ETierType } from './types/TierType';
 
 const VATRates = new VATRatesLib();
 
+/**
+ * Returns true if the given tier type can be subject to VAT
+ */
 export const isTierTypeSubjectToVAT = (tierType: TierType) => {
   const taxedTiersTypes: string[] = [ETierType.SUPPORT, ETierType.SERVICE, ETierType.PRODUCT, ETierType.TICKET];
   return taxedTiersTypes.includes(tierType);
@@ -32,32 +35,18 @@ export const getVatOriginCountry = (
  * @param {string} tierType - the tier type (eg. SUPPORT, TICKET...)
  * @param {string} hostCountry - two letters country code of the host
  */
-export const vatMayApply = (tierType: TierType, hostCountry: string, collectiveCountry: string | null): boolean => {
-  if (!isTierTypeSubjectToVAT(tierType)) {
-    return false;
-  }
-
-  const originCountry = tierType === ETierType.TICKET && collectiveCountry ? collectiveCountry : hostCountry;
-  if (!isMemberOfTheEuropeanUnion(originCountry)) {
-    return false;
-  }
-
-  return true;
+export const vatMayApply = (tierType: TierType, originCountry: string | null): boolean => {
+  return isTierTypeSubjectToVAT(tierType) && Boolean(originCountry) && isMemberOfTheEuropeanUnion(originCountry);
 };
 
 /**
  * Get the base vat percentage for this host/collective/tier
  */
-export const getStandardVatRate = (
-  tierType: TierType,
-  hostCountry: string,
-  collectiveCountry: string | null,
-): Number => {
-  if (!vatMayApply(tierType, hostCountry, collectiveCountry)) {
+export const getStandardVatRate = (tierType: TierType, originCountry: string | null): Number => {
+  if (!vatMayApply(tierType, originCountry)) {
     return 0;
   }
 
-  const originCountry = tierType === ETierType.TICKET && collectiveCountry ? collectiveCountry : hostCountry;
   return VATRates.getStandardRate(originCountry);
 };
 
@@ -74,8 +63,7 @@ export const getStandardVatRate = (
  */
 export const getVatPercentage = (
   tierType: TierType,
-  hostCountry: string,
-  collectiveCountry: string | null,
+  originCountry: string | null,
   userCountry: string,
   hasValidVatNumber: boolean,
 ): Number => {
@@ -84,15 +72,12 @@ export const getVatPercentage = (
     return 0;
   }
 
-  // Europe VAT specifies that VAT depends on the country where the event takes place
-  const originCountry = tierType === ETierType.TICKET && collectiveCountry ? collectiveCountry : hostCountry;
-
   // If it's another European country that provides a VAT number, don't apply VAT
   if (originCountry !== userCountry && hasValidVatNumber) {
     return 0;
   }
 
-  return getStandardVatRate(tierType, hostCountry, collectiveCountry);
+  return getStandardVatRate(tierType, originCountry);
 };
 
 /**

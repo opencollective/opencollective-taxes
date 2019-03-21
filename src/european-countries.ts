@@ -33,8 +33,8 @@ const europeanCountries: string[] = [
 /**
  * Return true if the country is a member of the European Union.
  */
-export const isMemberOfTheEuropeanUnion = (countryCode: string) : boolean => {
-  return europeanCountries.includes(countryCode);
+export const isMemberOfTheEuropeanUnion = (countryCode: string | null): boolean => {
+  return Boolean(countryCode) && europeanCountries.includes(<string>countryCode);
 };
 
 export default europeanCountries;
