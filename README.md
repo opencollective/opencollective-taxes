@@ -31,7 +31,7 @@ npm install
 ## Release
 
 1. Bump version with `npm version {patch|minor|major}
-2. Run `npm run publish`
+2. Run `npm publish`
 
 ## Contributing
 
