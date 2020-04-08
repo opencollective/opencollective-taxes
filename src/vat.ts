@@ -1,5 +1,5 @@
 import VATRatesLib from 'vatrates';
-import jsvat from 'jsvat';
+import { checkVAT, countries } from 'jsvat';
 import { isMemberOfTheEuropeanUnion } from './european-countries';
 import TierType, { ETierType } from './types/TierType';
 
@@ -90,5 +90,5 @@ export const getVatPercentage = (
  *    - country: { isoCode: { short } }
  */
 export const checkVATNumberFormat = (number: string) => {
-  return jsvat.checkVAT(number);
+  return checkVAT(number, countries);
 };
