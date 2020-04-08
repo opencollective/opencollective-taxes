@@ -84,11 +84,17 @@ export const getVatPercentage = (
 /**
  * Check the formatof a VAT ID number.
  *
+ * @param number: The VAT number to check
+ * @param countryCode: Provide a country code if you want to check against a single country code
  * @returns {object}
  *    - value: Standardized number
  *    - isValid
  *    - country: { isoCode: { short } }
  */
-export const checkVATNumberFormat = (number: string) => {
-  return checkVAT(number, countries);
+export const checkVATNumberFormat = (number: string, countryCode?: string) => {
+  const filteredCountries = !countryCode
+    ? countries
+    : countries.filter((country) => country.codes.includes(countryCode));
+
+  return checkVAT(number, filteredCountries);
 };

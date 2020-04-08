@@ -104,6 +104,11 @@ describe('checkVATNumberFormat', () => {
     });
   });
 
+  it('can check against a single country', () => {
+    expect(checkVATNumberFormat('FR XX-999999999').isValid).toBe(true);
+    expect(checkVATNumberFormat('FR XX-999999999', 'BE').isValid).toBe(false);
+  });
+
   it('returns rich information', () => {
     expect(checkVATNumberFormat('FRXX999999999')).toEqual({
       country: {
