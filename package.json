@@ -26,7 +26,7 @@
     "typescript": "^3.3.3333"
   },
   "dependencies": {
-    "jsvat": "2.2.0",
+    "jsvat": "2.3.1",
     "vatrates": "2.0.2"
   },
   "jest": {
