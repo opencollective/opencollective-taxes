@@ -8,7 +8,14 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "build": "tsc",
-    "prepublish": "npm run build"
+    "lint": "eslint . --ext='js,ts'",
+    "lint:check": "npm run lint -- --quiet",
+    "lint:fix": "npm run lint -- --fix",
+    "prepublish": "npm run build",
+    "prettier": "prettier \"**/*.@(js|ts|json|md)\" --ignore-path .eslintignore",
+    "prettier:check": "npm run prettier -- --check",
+    "prettier:write": "npm run prettier -- --write",
+    "type:check": "tsc"
   },
   "keywords": [
     "tax",
@@ -19,14 +26,29 @@
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^26.0.0",
+    "@types/lodash": "^4.14.161",
+    "@typescript-eslint/eslint-plugin": "^4.0.0",
+    "@typescript-eslint/parser": "^3.10.1",
+    "babel-eslint": "^10.1.0",
     "codecov": "^3.2.0",
+    "eslint": "^7.9.0",
+    "eslint-config-opencollective": "^2.2.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-graphql": "^4.0.0",
+    "eslint-plugin-mocha": "8.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-react": "^7.21.2",
+    "eslint-plugin-simple-import-sort": "^5.0.3",
     "jest": "^25.3.0",
     "jest-junit": "^11.0.0",
+    "prettier": "2.1.2",
     "ts-jest": "^25.3.1",
     "typescript": "^3.3.3333"
   },
   "dependencies": {
     "jsvat": "2.2.0",
+    "lodash": "^4.17.20",
     "vatrates": "2.0.3"
   },
   "jest": {
