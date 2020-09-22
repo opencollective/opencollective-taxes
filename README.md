@@ -1,7 +1,6 @@
 # Open Collective Taxes
 
 [![Circle CI](https://circleci.com/gh/opencollective/opencollective-taxes/tree/master.svg?style=shield)](https://circleci.com/gh/opencollective/opencollective-frontend/tree/master)
-[![Slack Status](https://slack.opencollective.org/badge.svg)](https://slack.opencollective.org)
 [![Dependency Status](https://david-dm.org/opencollective/opencollective-taxes/status.svg)](https://david-dm.org/opencollective/opencollective-taxes)
 [![Greenkeeper badge](https://badges.greenkeeper.io/opencollective/opencollective-taxes.svg)](https://greenkeeper.io/)
 [![codecov](https://codecov.io/gh/opencollective/opencollective-taxes/branch/master/graph/badge.svg)](https://codecov.io/gh/opencollective/opencollective-taxes)
@@ -46,5 +45,5 @@ You can run the tests using `npm test` or `npm run test:watch` (for TDD).
 ## Discussion
 
 If you have any questions, ping us on Slack
-(https://slack.opencollective.org) or on Twitter
+(https://slack.opencollective.com) or on Twitter
 ([@opencollect](https://twitter.com/opencollect)).
