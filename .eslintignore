@@ -1,0 +1,11 @@
+node_modules/
+
+# Build and auto-generated files
+dist/
+coverage/
+.nyc_output
+
+# VSCode
+.vscode
+.history
+

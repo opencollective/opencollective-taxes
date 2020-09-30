@@ -1,4 +1,4 @@
-export enum ETierType {
+export enum TierType {
   SUPPORT = 'SUPPORT',
   SERVICE = 'SERVICE',
   PRODUCT = 'PRODUCT',
@@ -8,6 +8,6 @@ export enum ETierType {
   DONATION = 'DONATION',
 }
 
-type TierType = keyof typeof ETierType;
+export type TierTypes = keyof typeof TierType;
 
 export default TierType;

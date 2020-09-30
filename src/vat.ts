@@ -1,15 +1,17 @@
 import VATRatesLib from 'vatrates';
 import { checkVAT, countries } from 'jsvat';
+import { get } from 'lodash';
+
 import { isMemberOfTheEuropeanUnion } from './european-countries';
-import TierType, { ETierType } from './types/TierType';
+import { TierType } from './types/TierType';
 
 const VATRates = new VATRatesLib();
 
 /**
  * Returns true if the given tier type can be subject to VAT
  */
-export const isTierTypeSubjectToVAT = (tierType: TierType) => {
-  const taxedTiersTypes: string[] = [ETierType.SUPPORT, ETierType.SERVICE, ETierType.PRODUCT, ETierType.TICKET];
+export const isTierTypeSubjectToVAT = (tierType: TierType): boolean => {
+  const taxedTiersTypes: string[] = [TierType.SUPPORT, TierType.SERVICE, TierType.PRODUCT, TierType.TICKET];
   return taxedTiersTypes.includes(tierType);
 };
 
@@ -26,9 +28,24 @@ export const getVatOriginCountry = (
     return null;
   }
 
-  const isEvent = tierType === ETierType.TICKET;
+  const isEvent = tierType === TierType.TICKET;
   const originCountry = isEvent && collectiveCountry ? collectiveCountry : hostCountry;
   return isMemberOfTheEuropeanUnion(originCountry) ? originCountry : null;
+};
+
+/**
+ * Returns true if VAT is enabled for this account
+ */
+export const accountHasVAT = (account: Record<string, unknown> | null): boolean => {
+  return Boolean(getAccountVATType(account));
+};
+
+export const getAccountVATType = (account: Record<string, unknown> | null): string => {
+  return <string>(
+    (get(account, 'settings.VAT.type') ||
+      get(account, 'parent.settings.VAT.type') ||
+      get(account, 'parentCollective.settings.VAT.type'))
+  );
 };
 
 /**
@@ -44,7 +61,7 @@ export const vatMayApply = (tierType: TierType, originCountry: string | null): b
 /**
  * Get the base vat percentage for this host/collective/tier
  */
-export const getStandardVatRate = (tierType: TierType, originCountry: string | null): Number => {
+export const getStandardVatRate = (tierType: TierType, originCountry: string | null): number => {
   if (!vatMayApply(tierType, originCountry)) {
     return 0;
   }
@@ -67,7 +84,7 @@ export const getVatPercentage = (
   originCountry: string | null,
   userCountry: string,
   hasValidVatNumber: boolean,
-): Number => {
+): number => {
   // No VAT if the customer is outside EU
   if (!isMemberOfTheEuropeanUnion(userCountry)) {
     return 0;
