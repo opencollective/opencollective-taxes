@@ -1,9 +1,9 @@
 # Open Collective Taxes
 
-[![Circle CI](https://circleci.com/gh/opencollective/opencollective-taxes/tree/master.svg?style=shield)](https://circleci.com/gh/opencollective/opencollective-frontend/tree/master)
+[![Circle CI](https://circleci.com/gh/opencollective/opencollective-taxes/tree/main.svg?style=shield)](https://circleci.com/gh/opencollective/opencollective-frontend/tree/main)
 [![Dependency Status](https://david-dm.org/opencollective/opencollective-taxes/status.svg)](https://david-dm.org/opencollective/opencollective-taxes)
 [![Greenkeeper badge](https://badges.greenkeeper.io/opencollective/opencollective-taxes.svg)](https://greenkeeper.io/)
-[![codecov](https://codecov.io/gh/opencollective/opencollective-taxes/branch/master/graph/badge.svg)](https://codecov.io/gh/opencollective/opencollective-taxes)
+[![codecov](https://codecov.io/gh/opencollective/opencollective-taxes/branch/main/graph/badge.svg)](https://codecov.io/gh/opencollective/opencollective-taxes)
 
 ## Foreword
 
