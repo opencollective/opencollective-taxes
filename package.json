@@ -47,7 +47,7 @@
     "typescript": "^3.3.3333"
   },
   "dependencies": {
-    "jsvat": "2.2.0",
+    "jsvat": "2.5.1",
     "lodash": "^4.17.20",
     "vatrates": "2.0.3"
   },
