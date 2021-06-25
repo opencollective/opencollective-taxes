@@ -32,7 +32,7 @@
     "babel-eslint": "^10.1.0",
     "codecov": "^3.2.0",
     "eslint": "^7.9.0",
-    "eslint-config-opencollective": "^2.2.0",
+    "eslint-config-opencollective": "^3.0.0",
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-graphql": "^4.0.0",
