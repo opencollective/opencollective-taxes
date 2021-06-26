@@ -5,10 +5,10 @@ it('returns true for European countries', () => {
   expect(isMemberOfTheEuropeanUnion('BE')).toBe(true);
   expect(isMemberOfTheEuropeanUnion('ES')).toBe(true);
   expect(isMemberOfTheEuropeanUnion('DE')).toBe(true);
-  expect(isMemberOfTheEuropeanUnion('GB')).toBe(true);
 });
 
 it('returns false for non-European countries', () => {
+  expect(isMemberOfTheEuropeanUnion('GB')).toBe(false);
   expect(isMemberOfTheEuropeanUnion('US')).toBe(false);
   expect(isMemberOfTheEuropeanUnion('JP')).toBe(false);
 });
