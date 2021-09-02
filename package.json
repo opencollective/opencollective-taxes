@@ -44,7 +44,7 @@
     "jest-junit": "^12.2.0",
     "prettier": "2.1.2",
     "ts-jest": "^25.3.1",
-    "typescript": "^3.3.3333"
+    "typescript": "^4.0.0"
   },
   "dependencies": {
     "jsvat": "2.2.0",
