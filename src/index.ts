@@ -46,7 +46,7 @@ export const getApplicableTaxes = (
     }
   }
 
-  if (accountHasGST(host) && gstMayApply(tierType)) {
+  if (accountHasGST(host, account) && gstMayApply(tierType)) {
     taxes.push({ type: TaxType.GST, percentage: GST_RATE_PERCENT });
   }
 

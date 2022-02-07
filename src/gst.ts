@@ -6,11 +6,12 @@ export const GST_RATE_PERCENT = 15;
 /**
  * Returns true if GST is enabled for this account
  */
-export const accountHasGST = (account: Record<string, unknown> | null): boolean => {
+export const accountHasGST = (
+  host: Record<string, unknown> | null,
+  account: Record<string, unknown> | null,
+): boolean => {
   return Boolean(
-    get(account, 'settings.GST') ||
-      get(account, 'parent.settings.GST') ||
-      get(account, 'parentCollective.settings.GST'),
+    get(host, 'settings.GST') || get(account, 'parent.settings.GST') || get(account, 'parentCollective.settings.GST'),
   );
 };
 
