@@ -1,6 +1,6 @@
 {
   "name": "@opencollective/taxes",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "Helpers to calculate taxes on Open Collective",
   "main": "dist/index.js",
   "scripts": {
