@@ -27,7 +27,6 @@ export const europeanCountries: string[] = [
   'SI',
   'ES',
   'SE',
-  'GB',
 ];
 
 /**
