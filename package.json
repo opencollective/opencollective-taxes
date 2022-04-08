@@ -7,7 +7,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "build": "rm -rf dist && tsc",
+    "build": "rm -rf dist && tsc -d",
     "lint": "eslint . --ext='js,ts'",
     "lint:check": "npm run lint -- --quiet",
     "lint:fix": "npm run lint -- --fix",
