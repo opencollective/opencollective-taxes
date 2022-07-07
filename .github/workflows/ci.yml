@@ -78,8 +78,6 @@ jobs:
             ${{ runner.os }}-npm-cache-${{ hashFiles('package-lock.json') }}
             ${{ runner.os }}-npm-cache-
 
-      - run: npm config set @bit:registry https://node.bit.dev
-
       - name: Install dependencies
         if: steps.taxes-node-modules.outputs.cache-hit != 'true'
         run: npm ci --prefer-offline --no-audit
@@ -114,8 +112,6 @@ jobs:
           restore-keys: |
             - ${{ runner.os }}-npm-cache-${{ hashFiles('package-lock.json') }}
             - ${{ runner.os }}-npm-cache-
-
-      - run: npm config set @bit:registry https://node.bit.dev
 
       - name: Install dependencies
         if: steps.taxes-node-modules.outputs.cache-hit != 'true'
