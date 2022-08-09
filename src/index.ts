@@ -8,6 +8,7 @@ import { getCountryFromAccount } from './utils';
 import { getAccountVATType, getStandardVatRate, getVatOriginCountry, vatMayApply } from './vat';
 import { accountHasGST, gstMayApply, GST_RATE_PERCENT } from './gst';
 import { isMemberOfTheEuropeanUnion } from './european-countries';
+import { Account } from './types/Accounts';
 
 export * from './european-countries';
 export * from './vat';
@@ -22,16 +23,12 @@ type Tax = {
 /**
  * Returns a list of taxes that may apply for this countribution type
  */
-export const getApplicableTaxes = (
-  account: Record<string, unknown> | null,
-  host: Record<string, unknown> | null,
-  tierType: TierType,
-): Tax[] => {
+export const getApplicableTaxes = (account: Account | null, host: Account | null, tierType: TierType): Tax[] => {
   const taxes = [];
   const accountCountry = getCountryFromAccount(account);
   const hostCountry = getCountryFromAccount(host);
 
-  const vatType = getAccountVATType(account);
+  const vatType = getAccountVATType(account, host);
   if (vatType) {
     let vatOriginCountry;
     if (vatType === 'OWN') {
