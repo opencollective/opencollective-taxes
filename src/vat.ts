@@ -4,6 +4,7 @@ import { get } from 'lodash';
 
 import { isMemberOfTheEuropeanUnion } from './european-countries';
 import { TierType } from './types/TierType';
+import { Account } from './types/Accounts';
 
 const VATRates = new VATRatesLib();
 
@@ -36,16 +37,32 @@ export const getVatOriginCountry = (
 /**
  * Returns true if VAT is enabled for this account
  */
-export const accountHasVAT = (account: Record<string, unknown> | null): boolean => {
-  return Boolean(getAccountVATType(account));
+export const accountHasVAT = (account: Account | null, host: Account | null): boolean => {
+  return Boolean(getAccountVATType(account, host));
 };
 
-export const getAccountVATType = (account: Record<string, unknown> | null): string => {
-  return <string>(
-    (get(account, 'settings.VAT.type') ||
-      get(account, 'parent.settings.VAT.type') ||
-      get(account, 'parentCollective.settings.VAT.type'))
-  );
+enum AccountVATType {
+  OWN = 'OWN',
+  HOST = 'HOST',
+}
+
+export const getAccountVATType = (account: Account | null, host: Account | null): AccountVATType | null => {
+  const accountVATType =
+    get(account, 'settings.VAT.type') ||
+    get(account, 'parent.settings.VAT.type') ||
+    get(account, 'parentCollective.settings.VAT.type');
+
+  if (accountVATType === 'OWN') {
+    return AccountVATType.OWN;
+  }
+
+  // Default to HOST VAT config if account doesn't have its own
+  const hostVATSettings = get(host, 'settings.VAT');
+  if (!hostVATSettings || hostVATSettings.disabled || (!hostVATSettings.number && hostVATSettings.type !== 'OWN')) {
+    return null;
+  }
+
+  return AccountVATType.HOST;
 };
 
 /**
