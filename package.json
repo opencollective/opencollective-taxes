@@ -43,7 +43,7 @@
     "eslint-plugin-mocha": "10.1.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-react": "^7.21.2",
-    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
     "jest": "^26.0.0",
     "jest-junit": "^14.0.0",
     "prettier": "2.7.1",
