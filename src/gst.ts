@@ -18,7 +18,13 @@ export const accountHasGST = (account: Record<string, unknown> | null): boolean 
  * Returns true if the given tier type can be subject to VAT
  */
 export const isTierTypeSubjectToGST = (tierType: TierType): boolean => {
-  const taxedTiersTypes: string[] = [TierType.SUPPORT, TierType.SERVICE, TierType.PRODUCT, TierType.TICKET];
+  const taxedTiersTypes: string[] = [
+    TierType.SUPPORT,
+    TierType.SERVICE,
+    TierType.PRODUCT,
+    TierType.SINGLE_TICKET,
+    TierType.MULTIPLE_TICKET,
+  ];
   return taxedTiersTypes.includes(tierType);
 };
 

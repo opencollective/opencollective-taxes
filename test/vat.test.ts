@@ -15,7 +15,7 @@ it('taxes only certain tier types', () => {
   expect(isTierTypeSubjectToVAT(TierType.PRODUCT)).toBe(true);
   expect(isTierTypeSubjectToVAT(TierType.SERVICE)).toBe(true);
   expect(isTierTypeSubjectToVAT(TierType.SUPPORT)).toBe(true);
-  expect(isTierTypeSubjectToVAT(TierType.TICKET)).toBe(true);
+  expect(isTierTypeSubjectToVAT(TierType.MULTIPLE_TICKET)).toBe(true);
 
   expect(isTierTypeSubjectToVAT(TierType.DONATION)).toBe(false);
   expect(isTierTypeSubjectToVAT(TierType.MEMBERSHIP)).toBe(false);
@@ -26,7 +26,7 @@ describe('getVatOriginCountry', () => {
     expect(getVatOriginCountry(TierType.PRODUCT, 'FR', 'BE')).toBe('FR');
     expect(getVatOriginCountry(TierType.SUPPORT, 'FR', 'BE')).toBe('FR');
     expect(getVatOriginCountry(TierType.SERVICE, 'FR', 'BE')).toBe('FR');
-    expect(getVatOriginCountry(TierType.TICKET, 'FR', 'BE')).toBe('BE');
+    expect(getVatOriginCountry(TierType.MULTIPLE_TICKET, 'FR', 'BE')).toBe('BE');
   });
 
   test("returns null when VAT doesn't apply", () => {
@@ -57,7 +57,7 @@ describe('getStandardVatRate', () => {
     expect(getStandardVatRate(TierType.SERVICE, 'FR')).toBe(FRENCH_VAT);
     expect(getStandardVatRate(TierType.SUPPORT, 'BE')).toBe(BELGIUM_VAT);
     expect(getStandardVatRate(TierType.PRODUCT, 'BE')).toBe(BELGIUM_VAT);
-    expect(getStandardVatRate(TierType.TICKET, 'BE')).toBe(BELGIUM_VAT);
+    expect(getStandardVatRate(TierType.MULTIPLE_TICKET, 'BE')).toBe(BELGIUM_VAT);
     expect(getStandardVatRate(TierType.DONATION, 'BE')).toBe(0);
   });
 });
@@ -92,8 +92,8 @@ describe('getVatPercentage', () => {
   });
 
   it('for events, the place where the event takes place determines the vat', () => {
-    expect(getVatPercentage(TierType.TICKET, 'BE', 'FR', false)).toBe(BELGIUM_VAT);
-    expect(getVatPercentage(TierType.TICKET, 'FR', 'FR', false)).toBe(FRENCH_VAT);
+    expect(getVatPercentage(TierType.MULTIPLE_TICKET, 'BE', 'FR', false)).toBe(BELGIUM_VAT);
+    expect(getVatPercentage(TierType.MULTIPLE_TICKET, 'FR', 'FR', false)).toBe(FRENCH_VAT);
   });
 });
 

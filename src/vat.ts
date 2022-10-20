@@ -12,7 +12,13 @@ const VATRates = new VATRatesLib();
  * Returns true if the given tier type can be subject to VAT
  */
 export const isTierTypeSubjectToVAT = (tierType: TierType): boolean => {
-  const taxedTiersTypes: string[] = [TierType.SUPPORT, TierType.SERVICE, TierType.PRODUCT, TierType.TICKET];
+  const taxedTiersTypes: string[] = [
+    TierType.SUPPORT,
+    TierType.SERVICE,
+    TierType.PRODUCT,
+    TierType.SINGLE_TICKET,
+    TierType.MULTIPLE_TICKET,
+  ];
   return taxedTiersTypes.includes(tierType);
 };
 
@@ -29,7 +35,7 @@ export const getVatOriginCountry = (
     return null;
   }
 
-  const isEvent = tierType === TierType.TICKET;
+  const isEvent = tierType === TierType.SINGLE_TICKET || tierType === TierType.MULTIPLE_TICKET;
   const originCountry = isEvent && collectiveCountry ? collectiveCountry : hostCountry;
   return isMemberOfTheEuropeanUnion(originCountry) ? originCountry : null;
 };
