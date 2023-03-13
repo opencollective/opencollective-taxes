@@ -6,8 +6,11 @@ export const getCountryFromAccount = (account: Record<string, any> | null): stri
   }
 
   return (
-    ((get(account.location, 'country') ||
+    ((get(account, 'countryISO') ||
+      get(account.location, 'country') ||
+      get(account.parent, 'countryISO') || 
       get(account.parent, 'location.country') ||
+      get(account.parentCollective, 'countryISO') ||
       get(account.parentCollective, 'location.country')) as string) || null
   );
 };
