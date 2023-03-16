@@ -33,7 +33,7 @@
     "@types/lodash": "^4.14.161",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
-    "babel-eslint": "^10.1.0",
+    "@babel/eslint-parser": "^7.11.0",
     "codecov": "^3.2.0",
     "eslint": "^7.9.0",
     "eslint-config-opencollective": "^3.0.0",
