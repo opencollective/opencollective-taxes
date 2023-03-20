@@ -9,7 +9,7 @@ describe('getApplicableTaxes', () => {
       getApplicableTaxes(
         {
           settings: { VAT: { type: 'OWN' } },
-          location: { country: 'FR' },
+          countryISO: 'FR',
         },
         null,
         TierType.PRODUCT,
@@ -26,7 +26,7 @@ describe('getApplicableTaxes', () => {
         },
         {
           settings: { VAT: { type: 'OWN' } },
-          location: { country: 'FR' },
+          countryISO: 'FR',
         },
         TierType.PRODUCT,
       ),
@@ -39,7 +39,7 @@ describe('getApplicableTaxes', () => {
         {},
         {
           settings: { GST: {} },
-          location: { country: 'NZ' },
+          countryISO: 'NZ',
         },
         TierType.PRODUCT,
       ),
