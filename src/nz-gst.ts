@@ -31,3 +31,24 @@ export const isTierTypeSubjectToGST = (tierType: TierType): boolean => {
 export const gstMayApply = (tierType: TierType): boolean => {
   return isTierTypeSubjectToGST(tierType);
 };
+
+/**
+ * Calculates the GST rate.
+ *
+ * @param tierType - the tier type (eg. SUPPORT, TICKET...)
+ * @param originCountry - two letters country where GST is applied
+ * @param userCountry - two letters country code of the payer
+ *
+ * @returns {Number} `0` if no GST applies or the percentage as a number between 0 and 100
+ */
+export const getGstPercentage = (
+  tierType: TierType,
+  originCountry: string | null,
+  userCountry: string | null,
+): number => {
+  if (originCountry === 'NZ' && userCountry === 'NZ' && gstMayApply(tierType)) {
+    return GST_RATE_PERCENT;
+  } else {
+    return 0;
+  }
+};
