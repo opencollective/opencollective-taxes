@@ -5,7 +5,7 @@ import {
   getVatPercentage,
   checkVATNumberFormat,
   getVatOriginCountry,
-} from '../src/vat';
+} from '../src/eu-vat';
 import { TierType } from '../src/types/TierType';
 
 const FRENCH_VAT = 20;

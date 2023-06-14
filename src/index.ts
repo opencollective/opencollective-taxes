@@ -5,13 +5,13 @@
 import type { TierType } from './types/TierType';
 import { TaxType } from './types/TaxType';
 import { getCountryFromAccount } from './utils';
-import { getAccountVATType, getStandardVatRate, getVatOriginCountry, vatMayApply } from './vat';
+import { getAccountVATType, getStandardVatRate, getVatOriginCountry, vatMayApply } from './eu-vat';
 import { accountHasGST, gstMayApply, GST_RATE_PERCENT } from './nz-gst';
 import { isMemberOfTheEuropeanUnion } from './european-countries';
 import { Account } from './types/Accounts';
 
 export * from './european-countries';
-export * from './vat';
+export * from './eu-vat';
 export * from './nz-gst';
 export * from './types/TaxType';
 
