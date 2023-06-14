@@ -46,6 +46,12 @@ enum AccountVATType {
   HOST = 'HOST',
 }
 
+export type VATSettings = {
+  number?: string;
+  type?: AccountVATType;
+  disabled?: boolean;
+};
+
 export const getAccountVATType = (account: Account | null, host: Account | null): AccountVATType | null => {
   const accountVATType =
     get(account, 'settings.VAT.type') ||
@@ -57,7 +63,7 @@ export const getAccountVATType = (account: Account | null, host: Account | null)
   }
 
   // Default to HOST VAT config if account doesn't have its own
-  const hostVATSettings = get(host, 'settings.VAT');
+  const hostVATSettings = get(host, 'settings.VAT') as VATSettings | undefined;
   if (!hostVATSettings || hostVATSettings.disabled || (!hostVATSettings.number && hostVATSettings.type !== 'OWN')) {
     return null;
   }

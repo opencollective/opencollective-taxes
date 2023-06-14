@@ -1,6 +1,6 @@
 import { get } from 'lodash';
 
-export const getCountryFromAccount = (account: Record<string, any> | null): string | null => {
+export const getCountryFromAccount = (account: Record<string, unknown> | null): string | null => {
   if (!account) {
     return null;
   }
