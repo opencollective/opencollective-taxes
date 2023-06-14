@@ -6,7 +6,7 @@ import {
   checkVATNumberFormat,
   getVatOriginCountry,
 } from '../src/vat';
-import TierType from '../src/types/TierType';
+import { TierType } from '../src/types/TierType';
 
 const FRENCH_VAT = 20;
 const BELGIUM_VAT = 21;

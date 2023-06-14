@@ -19,33 +19,16 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2-beta
+        uses: actions/checkout@v3
 
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: '12.x'
-
-      - name: Restore node_modules
-        uses: actions/cache@v3
-        id: node-modules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
-
-      - name: Restore .npm cache
-        if: steps.node-modules.outputs.cache-hit != 'true'
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-cache-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-cache-${{ hashFiles('package-lock.json') }}
-            ${{ runner.os }}-npm-cache-
+          node-version-file: 'package.json'
+          cache: 'npm'
 
       - name: Install dependencies
-        if: steps.node-modules.outputs.cache-hit != 'true'
-        run: CYPRESS_INSTALL_BINARY=0 npm ci --prefer-offline --no-audit
+        run: npm ci --prefer-offline --no-audit
 
       - run: npm run lint:check
 
@@ -54,32 +37,15 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2-beta
+        uses: actions/checkout@v3
 
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: '12.x'
-
-      - name: Restore node_modules
-        uses: actions/cache@v3
-        id: node-modules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
-
-      - name: Restore .npm cache
-        if: steps.node-modules.outputs.cache-hit != 'true'
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-cache-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-cache-${{ hashFiles('package-lock.json') }}
-            ${{ runner.os }}-npm-cache-
+          node-version-file: 'package.json'
+          cache: 'npm'
 
       - name: Install dependencies
-        if: steps.taxes-node-modules.outputs.cache-hit != 'true'
         run: npm ci --prefer-offline --no-audit
 
       - run: npm run prettier:check
@@ -89,32 +55,15 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2-beta
+        uses: actions/checkout@v3
 
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: '12.x'
-
-      - name: Restore node_modules
-        uses: actions/cache@v3
-        id: node-modules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
-
-      - name: Restore .npm cache
-        if: steps.node-modules.outputs.cache-hit != 'true'
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-cache-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            - ${{ runner.os }}-npm-cache-${{ hashFiles('package-lock.json') }}
-            - ${{ runner.os }}-npm-cache-
+          node-version-file: 'package.json'
+          cache: 'npm'
 
       - name: Install dependencies
-        if: steps.taxes-node-modules.outputs.cache-hit != 'true'
         run: npm ci --prefer-offline --no-audit
 
       - name: Run tests
@@ -130,27 +79,15 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2-beta
+        uses: actions/checkout@v3
 
-      - name: Restore node_modules
-        uses: actions/cache@v3
-        id: taxes-node-modules
+      - name: Setup node
+        uses: actions/setup-node@v3
         with:
-          path: node_modules
-          key: ${{ runner.os }}-taxes-node-modules-${{ hashFiles('package-lock.json') }}
-
-      - name: Restore .npm cache
-        if: steps.taxes-node-modules.outputs.cache-hit != 'true'
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-taxes-npm-cache-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            - ${{ runner.os }}-taxes-npm-cache-${{ hashFiles('package-lock.json') }}
-            - ${{ runner.os }}-taxes-npm-cache-
+          node-version-file: 'package.json'
+          cache: 'npm'
 
       - name: Install dependencies
-        if: steps.taxes-node-modules.outputs.cache-hit != 'true'
         run: npm ci --prefer-offline --no-audit
 
       - run: npm run type:check

@@ -9,5 +9,3 @@ export enum TierType {
 }
 
 export type TierTypes = keyof typeof TierType;
-
-export default TierType;
