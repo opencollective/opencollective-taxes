@@ -40,7 +40,7 @@
     "@typescript-eslint/parser": "^6.0.0",
     "codecov": "^3.2.0",
     "eslint": "^8.0.0",
-    "eslint-config-opencollective": "^3.0.3",
+    "eslint-config-opencollective": "^4.0.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "jest": "^29.5.0",
