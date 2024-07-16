@@ -102,6 +102,9 @@ describe('checkVATNumberFormat', () => {
     expect(checkVATNumberFormat('xxx')).toEqual({
       isValid: false,
       value: 'XXX',
+      country: undefined,
+      isSupportedCountry: false,
+      isValidFormat: false,
     });
   });
 
@@ -120,6 +123,8 @@ describe('checkVATNumberFormat', () => {
         },
         name: 'France',
       },
+      isSupportedCountry: true,
+      isValidFormat: true,
       isValid: true,
       value: 'FRXX999999999',
     });
@@ -136,6 +141,8 @@ describe('checkVATNumberFormat', () => {
         name: 'France',
       },
       isValid: true,
+      isSupportedCountry: true,
+      isValidFormat: true,
       value: 'FRXX999999999',
     });
   });
