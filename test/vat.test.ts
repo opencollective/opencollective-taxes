@@ -52,7 +52,7 @@ describe('vatMayApply', () => {
 });
 
 describe('getStandardVatRate', () => {
-  it('returns the valud based on the country', () => {
+  it('returns the value based on the country', () => {
     expect(getStandardVatRate(TierType.SERVICE, 'BE')).toBe(BELGIUM_VAT);
     expect(getStandardVatRate(TierType.SERVICE, 'FR')).toBe(FRENCH_VAT);
     expect(getStandardVatRate(TierType.SUPPORT, 'BE')).toBe(BELGIUM_VAT);

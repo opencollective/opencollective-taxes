@@ -1,12 +1,10 @@
 import { checkVAT, countries } from 'jsvat';
 import { get } from 'lodash';
-import VATRatesLib from 'vatrates';
+import SalesTaxRates from 'sales-tax/res/sales_tax_rates.json';
 
 import { Account } from './types/Accounts';
 import { TierType } from './types/TierType';
 import { isMemberOfTheEuropeanUnion } from './european-countries';
-
-const VATRates = new VATRatesLib();
 
 /**
  * Returns true if the given tier type can be subject to VAT
@@ -82,14 +80,14 @@ export const vatMayApply = (tierType: TierType, originCountry: string | null): b
 };
 
 /**
- * Get the base vat percentage for this host/collective/tier
+ * Get the base vat percentage for this host/collective/tier as a number between 0 and 100
  */
 export const getStandardVatRate = (tierType: TierType, originCountry: string | null): number => {
-  if (!vatMayApply(tierType, originCountry)) {
+  if (!originCountry || !vatMayApply(tierType, originCountry) || !(originCountry in SalesTaxRates)) {
     return 0;
+  } else {
+    return Math.round(SalesTaxRates[originCountry as keyof typeof SalesTaxRates].rate * 100);
   }
-
-  return VATRates.getStandardRate(originCountry);
 };
 
 /**

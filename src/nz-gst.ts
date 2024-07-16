@@ -1,8 +1,9 @@
 import { get } from 'lodash';
+import SalesTaxRates from 'sales-tax/res/sales_tax_rates.json';
 
 import { TierType } from './types/TierType';
 
-export const GST_RATE_PERCENT = 15;
+export const GST_RATE_PERCENT = Math.round(SalesTaxRates['NZ'].rate * 100);
 
 /**
  * Returns true if GST is enabled for this account
