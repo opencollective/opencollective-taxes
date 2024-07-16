@@ -1,10 +1,10 @@
 import {
+  checkVATNumberFormat,
+  getStandardVatRate,
+  getVatOriginCountry,
+  getVatPercentage,
   isTierTypeSubjectToVAT,
   vatMayApply,
-  getStandardVatRate,
-  getVatPercentage,
-  checkVATNumberFormat,
-  getVatOriginCountry,
 } from '../src/eu-vat';
 import { TierType } from '../src/types/TierType';
 
