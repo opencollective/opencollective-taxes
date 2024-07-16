@@ -10,7 +10,8 @@
     "sourceMap": true,
     "strict": true,
     "esModuleInterop": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "resolveJsonModule": true
   },
   "include": ["./src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
