@@ -1,10 +1,10 @@
-import VATRatesLib from 'vatrates';
 import { checkVAT, countries } from 'jsvat';
 import { get } from 'lodash';
+import VATRatesLib from 'vatrates';
 
-import { isMemberOfTheEuropeanUnion } from './european-countries';
-import { TierType } from './types/TierType';
 import { Account } from './types/Accounts';
+import { TierType } from './types/TierType';
+import { isMemberOfTheEuropeanUnion } from './european-countries';
 
 const VATRates = new VATRatesLib();
 

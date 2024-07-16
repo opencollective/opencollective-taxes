@@ -2,13 +2,13 @@
  * Utils to calculate taxes.
  */
 
-import type { TierType } from './types/TierType';
-import { TaxType } from './types/TaxType';
-import { getCountryFromAccount } from './utils';
-import { getAccountVATType, getStandardVatRate, getVatOriginCountry, vatMayApply } from './eu-vat';
-import { accountHasGST, gstMayApply, GST_RATE_PERCENT } from './nz-gst';
-import { isMemberOfTheEuropeanUnion } from './european-countries';
 import { Account } from './types/Accounts';
+import { TaxType } from './types/TaxType';
+import type { TierType } from './types/TierType';
+import { getAccountVATType, getStandardVatRate, getVatOriginCountry, vatMayApply } from './eu-vat';
+import { isMemberOfTheEuropeanUnion } from './european-countries';
+import { accountHasGST, GST_RATE_PERCENT, gstMayApply } from './nz-gst';
+import { getCountryFromAccount } from './utils';
 
 export * from './european-countries';
 export * from './eu-vat';

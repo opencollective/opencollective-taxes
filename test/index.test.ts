@@ -1,6 +1,6 @@
 import { getApplicableTaxes, getApplicableTaxesForCountry } from '../src';
-import { TierType } from '../src/types/TierType';
 import { TaxType } from '../src/types/TaxType';
+import { TierType } from '../src/types/TierType';
 
 describe('getApplicableTaxes', () => {
   it('Detects VAT from collective', () => {
