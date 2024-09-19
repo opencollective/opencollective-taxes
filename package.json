@@ -53,7 +53,7 @@
   "dependencies": {
     "jsvat": "2.5.3",
     "lodash": "^4.17.20",
-    "sales-tax": "2.15.0"
+    "sales-tax": "2.16.0"
   },
   "jest": {
     "moduleFileExtensions": [
