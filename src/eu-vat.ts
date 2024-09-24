@@ -1,4 +1,4 @@
-import { checkVAT, countries } from 'jsvat';
+import { checkVAT, countries } from 'jsvat-next';
 import { get } from 'lodash';
 import SalesTaxRates from 'sales-tax/res/sales_tax_rates.json';
 
