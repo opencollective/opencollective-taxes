@@ -51,7 +51,7 @@
     "typescript": "^5.1.3"
   },
   "dependencies": {
-    "jsvat": "2.5.3",
+    "jsvat-next": "3.0.4",
     "lodash": "^4.17.20",
     "sales-tax": "2.16.0"
   },
