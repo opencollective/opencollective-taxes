@@ -51,6 +51,15 @@ export type VATSettings = {
 };
 
 export const getAccountVATType = (account: Account | null, host: Account | null): AccountVATType | null => {
+  const isVATDisabledAtCollectiveLevel =
+    get(account, 'settings.VAT.disabled') ??
+    get(account, 'parent.settings.VAT.disabled') ??
+    get(account, 'parentCollective.settings.VAT.disabled');
+
+  if (isVATDisabledAtCollectiveLevel) {
+    return null;
+  }
+
   const accountVATType =
     get(account, 'settings.VAT.type') ||
     get(account, 'parent.settings.VAT.type') ||
