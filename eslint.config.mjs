@@ -1,4 +1,4 @@
-import openCollectiveConfig from 'eslint-config-opencollective/eslint.config.cjs'; // eslint-disable-line n/no-unpublished-import
+import openCollectiveConfig from 'eslint-config-opencollective/eslint-node.config.cjs'; // eslint-disable-line n/no-unpublished-import
 import globals from 'globals'; // eslint-disable-line n/no-unpublished-import
 
 export default [
