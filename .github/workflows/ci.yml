@@ -108,7 +108,7 @@ jobs:
           cache: 'npm'
 
       - name: Restore node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         id: api-node-modules
         with:
           path: node_modules
