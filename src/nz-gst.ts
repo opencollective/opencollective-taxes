@@ -5,10 +5,24 @@ import { TierType } from './types/TierType';
 
 export const GST_RATE_PERCENT = Math.round(SalesTaxRates['NZ'].rate * 100);
 
+type GSTSettings = {
+  number?: string;
+  type?: 'OWN' | 'HOST';
+  disabled?: boolean;
+};
+
 /**
  * Returns true if GST is enabled for this account
  */
-export const accountHasGST = (account: Record<string, unknown> | null): boolean => {
+export const accountHasGST = (
+  account: {
+    settings?: {
+      GST?: GSTSettings;
+      parent?: { settings?: { GST?: GSTSettings } };
+      parentCollective?: { settings?: { GST?: GSTSettings } };
+    };
+  } | null,
+): boolean => {
   return Boolean(
     get(account, 'settings.GST') ||
       get(account, 'parent.settings.GST') ||
@@ -19,7 +33,7 @@ export const accountHasGST = (account: Record<string, unknown> | null): boolean 
 /**
  * Returns true if the given tier type can be subject to VAT
  */
-export const isTierTypeSubjectToGST = (tierType: TierType): boolean => {
+export const isTierTypeSubjectToGST = (tierType: TierType | `${TierType}`): boolean => {
   const taxedTiersTypes: string[] = [TierType.SUPPORT, TierType.SERVICE, TierType.PRODUCT, TierType.TICKET];
   return taxedTiersTypes.includes(tierType);
 };
@@ -30,7 +44,7 @@ export const isTierTypeSubjectToGST = (tierType: TierType): boolean => {
  * @param tierType - the tier type (eg. SUPPORT, TICKET...)
  * @param originCOuntry - two letters country where GST is applied
  */
-export const gstMayApply = (tierType: TierType): boolean => {
+export const gstMayApply = (tierType: TierType | `${TierType}`): boolean => {
   return isTierTypeSubjectToGST(tierType);
 };
 
@@ -44,7 +58,7 @@ export const gstMayApply = (tierType: TierType): boolean => {
  * @returns {Number} `0` if no GST applies or the percentage as a number between 0 and 100
  */
 export const getGstPercentage = (
-  tierType: TierType,
+  tierType: TierType | `${TierType}`,
   originCountry: string | null,
   userCountry: string | null,
 ): number => {
