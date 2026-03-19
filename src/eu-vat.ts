@@ -9,7 +9,7 @@ import { isMemberOfTheEuropeanUnion } from './european-countries';
 /**
  * Returns true if the given tier type can be subject to VAT
  */
-export const isTierTypeSubjectToVAT = (tierType: TierType): boolean => {
+export const isTierTypeSubjectToVAT = (tierType: TierType | `${TierType}`): boolean => {
   const taxedTiersTypes: string[] = [TierType.SUPPORT, TierType.SERVICE, TierType.PRODUCT, TierType.TICKET];
   return taxedTiersTypes.includes(tierType);
 };
@@ -19,7 +19,7 @@ export const isTierTypeSubjectToVAT = (tierType: TierType): boolean => {
  * for calculating the percentage.
  */
 export const getVatOriginCountry = (
-  tierType: TierType,
+  tierType: TierType | `${TierType}`,
   hostCountry: string | null,
   collectiveCountry: string | null,
 ): string | null => {
@@ -84,14 +84,14 @@ export const getAccountVATType = (account: Account | null, host: Account | null)
  * @param tierType - the tier type (eg. SUPPORT, TICKET...)
  * @param originCOuntry - two letters country where VAT is applied
  */
-export const vatMayApply = (tierType: TierType, originCountry: string | null): boolean => {
+export const vatMayApply = (tierType: TierType | `${TierType}`, originCountry: string | null): boolean => {
   return Boolean(originCountry) && isTierTypeSubjectToVAT(tierType) && isMemberOfTheEuropeanUnion(originCountry);
 };
 
 /**
  * Get the base vat percentage for this host/collective/tier as a number between 0 and 100
  */
-export const getStandardVatRate = (tierType: TierType, originCountry: string | null): number => {
+export const getStandardVatRate = (tierType: TierType | `${TierType}`, originCountry: string | null): number => {
   if (!originCountry || !vatMayApply(tierType, originCountry) || !(originCountry in SalesTaxRates)) {
     return 0;
   } else {
@@ -110,7 +110,7 @@ export const getStandardVatRate = (tierType: TierType, originCountry: string | n
  * @returns {Number} `0` if no VAT applies or the percentage as a number between 0 and 100
  */
 export const getVatPercentage = (
-  tierType: TierType,
+  tierType: TierType | `${TierType}`,
   originCountry: string | null,
   userCountry: string,
   hasValidVatNumber: boolean,
