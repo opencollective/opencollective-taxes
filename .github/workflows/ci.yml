@@ -70,7 +70,7 @@ jobs:
         run: npm run test:coverage -- --ci --reporters=jest-junit
 
       - name: Upload tests coverage results
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@57e3a136b779b570ffcdbf80b3bdc90e7fab3de2 # v6
 
   typescript:
     runs-on: ubuntu-latest
