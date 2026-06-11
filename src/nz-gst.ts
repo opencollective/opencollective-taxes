@@ -25,8 +25,8 @@ export const accountHasGST = (
 ): boolean => {
   return Boolean(
     get(account, 'settings.GST') ||
-      get(account, 'parent.settings.GST') ||
-      get(account, 'parentCollective.settings.GST'),
+    get(account, 'parent.settings.GST') ||
+    get(account, 'parentCollective.settings.GST'),
   );
 };
 
