@@ -35,21 +35,21 @@
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^30.0.0",
-    "@types/lodash": "^4.14.161",
-    "eslint": "^9.14.0",
-    "eslint-config-opencollective": "6.2.0",
-    "globals": "^17.0.0",
-    "jest": "^30.0.0",
+    "@types/lodash": "^4.17.24",
+    "eslint": "^9.39.4",
+    "eslint-config-opencollective": "^6.2.0",
+    "globals": "^17.6.0",
+    "jest": "^30.4.2",
     "jest-junit": "^17.0.0",
-    "jest-util": "^30.0.0",
-    "prettier": "3.8.3",
+    "jest-util": "^30.4.1",
+    "prettier": "^3.8.4",
     "ts-jest": "^29.4.11",
-    "typescript": "^6.0.0",
-    "typescript-eslint": "^8.60.1"
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.61.0"
   },
   "dependencies": {
     "jsvat-next": "3.0.4",
-    "lodash": "^4.17.20",
+    "lodash": "^4.18.1",
     "sales-tax": "2.23.0"
   },
   "jest": {
