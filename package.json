@@ -37,7 +37,7 @@
     "@types/jest": "^30.0.0",
     "@types/lodash": "^4.17.24",
     "eslint": "^9.39.4",
-    "eslint-config-opencollective": "^6.2.0",
+    "eslint-config-opencollective": "^7.0.0",
     "globals": "^17.6.0",
     "jest": "^30.4.2",
     "jest-junit": "^17.0.0",
