@@ -15,3 +15,8 @@ junit.xml
 # VSCode & VSCode's extensions
 .vscode/*
 .history
+
+# Turborepo task logs and local cache
+.turbo/
+
+/node_modules

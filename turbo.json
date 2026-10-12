@@ -1,0 +1,246 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "test:task": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "package-lock.json",
+        ".env*",
+        "!dist/**",
+        "!.next/**",
+        "!coverage/**",
+        "!.nyc_output/**",
+        "!.turbo/**",
+        "!*.tsbuildinfo",
+        "!test-results.xml",
+        "!test-report.junit.xml",
+        "!junit.xml",
+        "!.eslintcache",
+        "!.prettiercache",
+        "!_sidebar.md"
+      ],
+      "env": [
+        "ANALYZE",
+        "BABEL_ENV",
+        "BUILD_NODE_MAX_OLD_SPACE_SIZE",
+        "CI",
+        "CODECOV_TOKEN",
+        "E2E_TEST",
+        "EXTRA_ENV",
+        "NEXT_BUILD_CPUS",
+        "NEXT_PUBLIC_*",
+        "NODE_ENV",
+        "NODE_OPTIONS",
+        "OC_ENV",
+        "PRESERVE_NEXT_CACHE",
+        "SENTRY_AUTH_TOKEN",
+        "TZ",
+        "OC_LOCKFILE_HASH_TAXES"
+      ],
+      "outputs": ["coverage/**", "junit.xml", "test-results.xml"],
+      "cache": true
+    },
+    "test:watch:task": {
+      "cache": false,
+      "passThroughEnv": ["*"],
+      "persistent": true
+    },
+    "test:coverage:task": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "package-lock.json",
+        ".env*",
+        "!dist/**",
+        "!.next/**",
+        "!coverage/**",
+        "!.nyc_output/**",
+        "!.turbo/**",
+        "!*.tsbuildinfo",
+        "!test-results.xml",
+        "!test-report.junit.xml",
+        "!junit.xml",
+        "!.eslintcache",
+        "!.prettiercache",
+        "!_sidebar.md"
+      ],
+      "env": [
+        "ANALYZE",
+        "BABEL_ENV",
+        "BUILD_NODE_MAX_OLD_SPACE_SIZE",
+        "CI",
+        "CODECOV_TOKEN",
+        "E2E_TEST",
+        "EXTRA_ENV",
+        "NEXT_BUILD_CPUS",
+        "NEXT_PUBLIC_*",
+        "NODE_ENV",
+        "NODE_OPTIONS",
+        "OC_ENV",
+        "PRESERVE_NEXT_CACHE",
+        "SENTRY_AUTH_TOKEN",
+        "TZ",
+        "OC_LOCKFILE_HASH_TAXES"
+      ],
+      "outputs": ["coverage/**", "junit.xml", "test-results.xml"],
+      "cache": true
+    },
+    "lint:task": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "package-lock.json",
+        ".env*",
+        "!dist/**",
+        "!.next/**",
+        "!coverage/**",
+        "!.nyc_output/**",
+        "!.turbo/**",
+        "!*.tsbuildinfo",
+        "!test-results.xml",
+        "!test-report.junit.xml",
+        "!junit.xml",
+        "!.eslintcache",
+        "!.prettiercache",
+        "!_sidebar.md"
+      ],
+      "env": ["CI", "NODE_ENV", "OC_ENV", "TZ", "NODE_OPTIONS", "OC_LOCKFILE_HASH_TAXES"],
+      "outputs": [],
+      "cache": true
+    },
+    "lint:check:task": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "package-lock.json",
+        ".env*",
+        "!dist/**",
+        "!.next/**",
+        "!coverage/**",
+        "!.nyc_output/**",
+        "!.turbo/**",
+        "!*.tsbuildinfo",
+        "!test-results.xml",
+        "!test-report.junit.xml",
+        "!junit.xml",
+        "!.eslintcache",
+        "!.prettiercache",
+        "!_sidebar.md"
+      ],
+      "env": ["CI", "NODE_ENV", "OC_ENV", "TZ", "NODE_OPTIONS", "OC_LOCKFILE_HASH_TAXES"],
+      "outputs": [],
+      "cache": true
+    },
+    "lint:fix:task": {
+      "cache": false,
+      "passThroughEnv": ["*"]
+    },
+    "prettier:check:task": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "package-lock.json",
+        ".env*",
+        "!dist/**",
+        "!.next/**",
+        "!coverage/**",
+        "!.nyc_output/**",
+        "!.turbo/**",
+        "!*.tsbuildinfo",
+        "!test-results.xml",
+        "!test-report.junit.xml",
+        "!junit.xml",
+        "!.eslintcache",
+        "!.prettiercache",
+        "!_sidebar.md"
+      ],
+      "env": ["CI", "NODE_ENV", "OC_ENV", "TZ", "NODE_OPTIONS", "OC_LOCKFILE_HASH_TAXES"],
+      "outputs": [],
+      "cache": true
+    },
+    "type:check:task": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "package-lock.json",
+        ".env*",
+        "!dist/**",
+        "!.next/**",
+        "!coverage/**",
+        "!.nyc_output/**",
+        "!.turbo/**",
+        "!*.tsbuildinfo",
+        "!test-results.xml",
+        "!test-report.junit.xml",
+        "!junit.xml",
+        "!.eslintcache",
+        "!.prettiercache",
+        "!_sidebar.md"
+      ],
+      "env": ["CI", "NODE_ENV", "OC_ENV", "TZ", "NODE_OPTIONS", "OC_LOCKFILE_HASH_TAXES"],
+      "outputs": [],
+      "cache": true
+    },
+    "depcheck:task": {
+      "cache": false,
+      "passThroughEnv": ["*"]
+    },
+    "format:check:task": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "package-lock.json",
+        ".env*",
+        "!dist/**",
+        "!.next/**",
+        "!coverage/**",
+        "!.nyc_output/**",
+        "!.turbo/**",
+        "!*.tsbuildinfo",
+        "!test-results.xml",
+        "!test-report.junit.xml",
+        "!junit.xml",
+        "!.eslintcache",
+        "!.prettiercache",
+        "!_sidebar.md"
+      ],
+      "env": ["CI", "NODE_ENV", "OC_ENV", "TZ", "NODE_OPTIONS", "OC_LOCKFILE_HASH_TAXES"],
+      "outputs": [],
+      "cache": true
+    },
+    "format:task": {
+      "cache": false,
+      "passThroughEnv": ["*"]
+    },
+    "build:clean": {
+      "cache": false,
+      "passThroughEnv": ["*"]
+    },
+    "build:compile": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "package-lock.json",
+        ".env*",
+        "!dist/**",
+        "!.next/**",
+        "!coverage/**",
+        "!.nyc_output/**",
+        "!.turbo/**",
+        "!*.tsbuildinfo",
+        "!test-results.xml",
+        "!test-report.junit.xml",
+        "!junit.xml",
+        "!.eslintcache",
+        "!.prettiercache",
+        "!_sidebar.md"
+      ],
+      "env": ["CI", "NODE_ENV", "OC_ENV", "TZ", "NODE_OPTIONS", "BABEL_ENV", "OC_LOCKFILE_HASH_TAXES"],
+      "outputs": ["dist/**", "!dist/.next/cache/**", "!dist/.next/dev/**"],
+      "cache": true,
+      "dependsOn": ["build:clean"]
+    },
+    "prettier:write:task": {
+      "cache": false,
+      "passThroughEnv": ["*"]
+    },
+    "prettier:task": {
+      "cache": false,
+      "passThroughEnv": ["*"]
+    }
+  }
+}
