@@ -2,7 +2,7 @@
   "$schema": "https://turborepo.dev/schema.json",
   "extends": ["//"],
   "tasks": {
-    "test": {
+    "test:task": {
       "inputs": [
         "$TURBO_DEFAULT$",
         "package-lock.json",
@@ -41,12 +41,12 @@
       "outputs": ["coverage/**", "junit.xml", "test-results.xml"],
       "cache": true
     },
-    "test:watch": {
+    "test:watch:task": {
       "cache": false,
       "passThroughEnv": ["*"],
       "persistent": true
     },
-    "test:coverage": {
+    "test:coverage:task": {
       "inputs": [
         "$TURBO_DEFAULT$",
         "package-lock.json",
@@ -85,11 +85,55 @@
       "outputs": ["coverage/**", "junit.xml", "test-results.xml"],
       "cache": true
     },
-    "build": {
+    "lint:task": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "package-lock.json",
+        ".env*",
+        "!dist/**",
+        "!.next/**",
+        "!coverage/**",
+        "!.nyc_output/**",
+        "!.turbo/**",
+        "!*.tsbuildinfo",
+        "!test-results.xml",
+        "!test-report.junit.xml",
+        "!junit.xml",
+        "!.eslintcache",
+        "!.prettiercache",
+        "!_sidebar.md"
+      ],
+      "env": ["CI", "NODE_ENV", "OC_ENV", "TZ", "NODE_OPTIONS", "OC_LOCKFILE_HASH_TAXES"],
+      "outputs": [],
+      "cache": true
+    },
+    "lint:check:task": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "package-lock.json",
+        ".env*",
+        "!dist/**",
+        "!.next/**",
+        "!coverage/**",
+        "!.nyc_output/**",
+        "!.turbo/**",
+        "!*.tsbuildinfo",
+        "!test-results.xml",
+        "!test-report.junit.xml",
+        "!junit.xml",
+        "!.eslintcache",
+        "!.prettiercache",
+        "!_sidebar.md"
+      ],
+      "env": ["CI", "NODE_ENV", "OC_ENV", "TZ", "NODE_OPTIONS", "OC_LOCKFILE_HASH_TAXES"],
+      "outputs": [],
+      "cache": true
+    },
+    "lint:fix:task": {
       "cache": false,
       "passThroughEnv": ["*"]
     },
-    "lint": {
+    "prettier:check:task": {
       "inputs": [
         "$TURBO_DEFAULT$",
         "package-lock.json",
@@ -111,7 +155,7 @@
       "outputs": [],
       "cache": true
     },
-    "lint:check": {
+    "type:check:task": {
       "inputs": [
         "$TURBO_DEFAULT$",
         "package-lock.json",
@@ -133,11 +177,11 @@
       "outputs": [],
       "cache": true
     },
-    "lint:fix": {
+    "depcheck:task": {
       "cache": false,
       "passThroughEnv": ["*"]
     },
-    "prettier:check": {
+    "format:check:task": {
       "inputs": [
         "$TURBO_DEFAULT$",
         "package-lock.json",
@@ -159,55 +203,7 @@
       "outputs": [],
       "cache": true
     },
-    "type:check": {
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        "package-lock.json",
-        ".env*",
-        "!dist/**",
-        "!.next/**",
-        "!coverage/**",
-        "!.nyc_output/**",
-        "!.turbo/**",
-        "!*.tsbuildinfo",
-        "!test-results.xml",
-        "!test-report.junit.xml",
-        "!junit.xml",
-        "!.eslintcache",
-        "!.prettiercache",
-        "!_sidebar.md"
-      ],
-      "env": ["CI", "NODE_ENV", "OC_ENV", "TZ", "NODE_OPTIONS", "OC_LOCKFILE_HASH_TAXES"],
-      "outputs": [],
-      "cache": true
-    },
-    "depcheck": {
-      "cache": false,
-      "passThroughEnv": ["*"]
-    },
-    "format:check": {
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        "package-lock.json",
-        ".env*",
-        "!dist/**",
-        "!.next/**",
-        "!coverage/**",
-        "!.nyc_output/**",
-        "!.turbo/**",
-        "!*.tsbuildinfo",
-        "!test-results.xml",
-        "!test-report.junit.xml",
-        "!junit.xml",
-        "!.eslintcache",
-        "!.prettiercache",
-        "!_sidebar.md"
-      ],
-      "env": ["CI", "NODE_ENV", "OC_ENV", "TZ", "NODE_OPTIONS", "OC_LOCKFILE_HASH_TAXES"],
-      "outputs": [],
-      "cache": true
-    },
-    "format": {
+    "format:task": {
       "cache": false,
       "passThroughEnv": ["*"]
     },
@@ -237,6 +233,14 @@
       "outputs": ["dist/**", "!dist/.next/cache/**", "!dist/.next/dev/**"],
       "cache": true,
       "dependsOn": ["build:clean"]
+    },
+    "prettier:write:task": {
+      "cache": false,
+      "passThroughEnv": ["*"]
+    },
+    "prettier:task": {
+      "cache": false,
+      "passThroughEnv": ["*"]
     }
   }
 }
